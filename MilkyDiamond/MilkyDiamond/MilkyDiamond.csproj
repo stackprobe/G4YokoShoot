@@ -122,6 +122,11 @@
     <Compile Include="Common\DDUserDatStrings.cs" />
     <Compile Include="Common\DDUtils.cs" />
     <Compile Include="Common\DDWin32.cs" />
+    <Compile Include="Games\Crash.cs" />
+    <Compile Include="Games\Game.cs" />
+    <Compile Include="Games\IEnemy.cs" />
+    <Compile Include="Games\IWeapon.cs" />
+    <Compile Include="Games\Player.cs" />
     <Compile Include="Ground.cs" />
     <Compile Include="MainWin.cs">
       <SubType>Form</SubType>
