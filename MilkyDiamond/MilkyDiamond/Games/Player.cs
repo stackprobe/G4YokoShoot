@@ -65,7 +65,7 @@ namespace Charlotte.Games
 			DDDraw.DrawCenter(Ground.I.Picture.Player, this.X, this.Y);
 		}
 
-		public void Fire()
+		public void Shoot()
 		{
 			if (Game.I.Frame % 6 == 0)
 			{

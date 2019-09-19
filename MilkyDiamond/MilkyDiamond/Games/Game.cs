@@ -84,7 +84,7 @@ namespace Charlotte.Games
 
 					if (!bornOrDead && 1 <= DDInput.B.GetInput()) // 攻撃ボタン押下中
 					{
-						this.Player.Fire();
+						this.Player.Shoot();
 					}
 				}
 
