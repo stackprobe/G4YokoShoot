@@ -15,7 +15,7 @@ namespace Charlotte.Games.Enemies.Bosses
 
 		public void Loaded(Tools.D2Point pt)
 		{
-			// noop
+			this.EachFrameSequencer = EnumerableTools.Supplier(this.GetEachFrameSequencer());
 		}
 
 		private IEnumerable<object> GetEachFrameSequencer()
@@ -28,7 +28,7 @@ namespace Charlotte.Games.Enemies.Bosses
 			}
 			for (; ; )
 			{
-				for (int c = 0; c < 20; c++)
+				for (int c = 0; c < 30; c++)
 				{
 					this.Y += 3.0;
 
@@ -40,7 +40,7 @@ namespace Charlotte.Games.Enemies.Bosses
 
 					yield return null;
 				}
-				for (int c = 0; c < 40; c++)
+				for (int c = 0; c < 60; c++)
 				{
 					this.Y -= 3.0;
 
@@ -52,7 +52,7 @@ namespace Charlotte.Games.Enemies.Bosses
 
 					yield return null;
 				}
-				for (int c = 0; c < 20; c++)
+				for (int c = 0; c < 30; c++)
 				{
 					this.Y += 3.0;
 
@@ -61,13 +61,10 @@ namespace Charlotte.Games.Enemies.Bosses
 			}
 		}
 
-		private Func<object> EachFrameSequencer = null;
+		private Func<object> EachFrameSequencer;
 
 		public bool EachFrame()
 		{
-			if (this.EachFrameSequencer == null)
-				this.EachFrameSequencer = EnumerableTools.Supplier(GetEachFrameSequencer());
-
 			this.EachFrameSequencer();
 			return true;
 		}
