@@ -38,6 +38,11 @@ namespace Charlotte.Games.Weapons
 			return false;
 		}
 
+		public int GetAttackPoint()
+		{
+			return 1;
+		}
+
 		public void Draw()
 		{
 			DDDraw.DrawCenter(Ground.I.Picture.Weapon0001, this.X, this.Y);

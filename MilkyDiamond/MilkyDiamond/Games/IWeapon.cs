@@ -13,6 +13,7 @@ namespace Charlotte.Games
 		bool EachFrame(); // ? 生存
 		Crash GetCrash();
 		bool Crashed(IEnemy enemy); // ? 生存
+		int GetAttackPoint();
 		void Draw();
 	}
 }

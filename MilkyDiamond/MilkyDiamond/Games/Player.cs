@@ -16,7 +16,7 @@ namespace Charlotte.Games
 
 		public SceneKeeper BornScene = new SceneKeeper(20);
 		public SceneKeeper DeadScene = new SceneKeeper(20);
-		public SceneKeeper MutekiScene = new SceneKeeper(30);
+		public SceneKeeper MutekiScene = new SceneKeeper(60);
 
 		private double Born_X;
 		private double Born_Y;

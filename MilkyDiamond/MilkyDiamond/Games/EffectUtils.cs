@@ -41,7 +41,7 @@ namespace Charlotte.Games
 				DDDraw.SetAlpha(0.7);
 				DDDraw.SetBright(1.0, 0.6, 0.3);
 				DDDraw.DrawBegin(DDGround.GeneralResource.WhiteCircle, x - DDGround.ICamera.X, y - DDGround.ICamera.Y);
-				DDDraw.DrawZoom(3.0 * scene.Rate);
+				DDDraw.DrawZoom(1.5 * scene.Rate);
 				DDDraw.DrawEnd();
 				DDDraw.Reset();
 

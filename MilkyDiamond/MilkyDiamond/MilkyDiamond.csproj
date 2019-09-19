@@ -127,6 +127,7 @@
     <Compile Include="Game3Common\SceneKeeper.cs" />
     <Compile Include="Games\EffectUtils.cs" />
     <Compile Include="Games\Enemies\Enemy0001.cs" />
+    <Compile Include="Games\Enemies\Enemy0002.cs" />
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\IEnemies.cs" />
     <Compile Include="Games\IEnemy.cs" />
@@ -137,6 +138,7 @@
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Scenarios\Scenario0001.cs" />
     <Compile Include="Games\Scenarios\Scenario0002.cs" />
+    <Compile Include="Games\Scenarios\Scenario0003.cs" />
     <Compile Include="Games\Status.cs" />
     <Compile Include="Games\Walls\Wall0001.cs" />
     <Compile Include="Games\Walls\Wall0002.cs" />

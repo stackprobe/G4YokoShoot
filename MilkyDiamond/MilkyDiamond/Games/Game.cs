@@ -32,7 +32,7 @@ namespace Charlotte.Games
 			I = null;
 		}
 
-		private Player Player = new Player();
+		public Player Player = new Player();
 
 		public int Frame = 0;
 
@@ -158,6 +158,32 @@ namespace Charlotte.Games
 							this.Player.DeadScene.IsFlaming() == false &&
 							this.Player.MutekiScene.IsFlaming() == false && enemyCrash.IsCrashed(playerCrash))
 						{
+							foreach (DDScene scene in DDSceneUtils.Create(30))
+							{
+								this.DrawWall();
+								this.Player.Draw();
+								this.DrawEnemies();
+
+								DDDraw.SetAlpha(0.3);
+								DDDraw.SetBright(1.0, 0.0, 0.0);
+								DDDraw.DrawRect(DDGround.GeneralResource.WhiteBox, 0, 0, DDConsts.Screen_W, DDConsts.Screen_H);
+								DDDraw.Reset();
+
+								{
+									int ix = DoubleTools.ToInt(this.Player.X);
+									int iy = DoubleTools.ToInt(this.Player.Y);
+
+									DDDraw.SetBright(1.0, 1.0, 0.0);
+									DDDraw.SetAlpha(scene.Rate);
+									DDDraw.DrawRect_LTRB(DDGround.GeneralResource.WhiteBox, ix - 1, 0, ix + 1, DDConsts.Screen_H);
+									DDDraw.SetAlpha(scene.RemainingRate);
+									DDDraw.DrawRect_LTRB(DDGround.GeneralResource.WhiteBox, 0, iy - 1, DDConsts.Screen_W, iy + 1);
+									DDDraw.Reset();
+								}
+
+								DDEngine.EachFrame();
+							}
+
 							this.Player.DeadScene.Fire();
 						}
 					}
