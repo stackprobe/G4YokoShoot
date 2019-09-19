@@ -7,6 +7,7 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Games;
 using Charlotte.Games.Scenarios;
+using Charlotte.Worlds;
 
 namespace Charlotte.Mains
 {
@@ -48,10 +49,14 @@ namespace Charlotte.Mains
 						{
 							this.LeaveTitleMenu();
 
-							using (Game game = new Game())
+							using (World world = new World())
 							{
-								game.Scenario = new Scenario0001();
-								game.Perform();
+								world.Scenarios = new IScenario[]
+								{
+									new Scenario0001(),
+								};
+
+								world.Perform();
 							}
 
 							this.ReturnTitleMenu();
