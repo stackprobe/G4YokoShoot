@@ -89,22 +89,13 @@ namespace Charlotte.Games
 				}
 
 				{
-					DDScene scene = this.Player.MutekiScene.GetScene();
-
-					if (scene != null)
-					{
-						// noop
-					}
-				}
-
-				{
 					DDScene scene = this.Player.BornScene.GetScene();
 
 					if (scene != null)
 					{
 						if (scene.Remaining == 0)
 						{
-							this.Player.MutekiScene.Fire();
+							this.Player.MutekiScene.FireDelay();
 						}
 					}
 				}
@@ -120,8 +111,17 @@ namespace Charlotte.Games
 								break;
 
 							this.Status.RemainingLiveCount--;
-							this.Player.BornScene.Fire();
+							this.Player.BornScene.FireDelay();
 						}
+					}
+				}
+
+				{
+					DDScene scene = this.Player.MutekiScene.GetScene();
+
+					if (scene != null)
+					{
+						// noop
 					}
 				}
 

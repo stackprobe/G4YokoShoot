@@ -23,6 +23,19 @@ namespace Charlotte.Games
 
 		public void Draw()
 		{
+			if (this.DeadScene.IsFlaming())
+			{
+				DDScene scene = this.DeadScene.GetScene();
+
+				DDDraw.SetAlpha(0.5);
+				DDDraw.DrawBegin(Ground.I.Picture.Player, this.X, this.Y);
+				DDDraw.DrawRotate(scene.Rate * 5.0);
+				DDDraw.DrawZoom(1.0 + scene.Rate * 5.0);
+				DDDraw.DrawEnd();
+				DDDraw.Reset();
+
+				return;
+			}
 			if (this.BornScene.IsFlaming())
 			{
 				if (this.BornScene.IsJustFired())
@@ -37,19 +50,6 @@ namespace Charlotte.Games
 
 				DDDraw.SetAlpha(0.5);
 				DDDraw.DrawCenter(Ground.I.Picture.Player, this.Born_X, this.Born_Y);
-				DDDraw.Reset();
-
-				return;
-			}
-			if (this.DeadScene.IsFlaming())
-			{
-				DDScene scene = this.DeadScene.GetScene();
-
-				DDDraw.SetAlpha(0.5);
-				DDDraw.DrawBegin(Ground.I.Picture.Player, this.X, this.Y);
-				DDDraw.DrawRotate(scene.Rate * 5.0);
-				DDDraw.DrawZoom(1.0 + scene.Rate * 5.0);
-				DDDraw.DrawEnd();
 				DDDraw.Reset();
 
 				return;
