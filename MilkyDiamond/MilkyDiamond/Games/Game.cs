@@ -13,6 +13,7 @@ namespace Charlotte.Games
 	public class Game : IDisposable
 	{
 		public IScenario Scenario;
+		public Status Status;
 
 		// <---- prm
 
@@ -40,36 +41,37 @@ namespace Charlotte.Games
 			this.Player.X = DDConsts.Screen_W / 4;
 			this.Player.Y = DDConsts.Screen_H / 2;
 
-			DDCurtain.SetCurtain(10);
+			this.Player.BornFrame = 1;
 
-			double enemyAddRate = 0.01;
+			DDCurtain.SetCurtain(10);
 
 			for (; ; this.Frame++)
 			{
 				// プレイヤー行動
 				{
+					bool bornOrDead = 1 <= this.Player.BornFrame || 1 <= this.Player.DeadFrame;
 					double xa = 0.0;
 					double ya = 0.0;
 
-					if (1 <= DDInput.DIR_4.GetInput()) // 左移動
+					if (!bornOrDead && 1 <= DDInput.DIR_4.GetInput()) // 左移動
 					{
 						xa = -1.0;
 					}
-					if (1 <= DDInput.DIR_6.GetInput()) // 右移動
+					if (!bornOrDead && 1 <= DDInput.DIR_6.GetInput()) // 右移動
 					{
 						xa = 1.0;
 					}
-					if (1 <= DDInput.DIR_8.GetInput()) // 上移動
+					if (!bornOrDead && 1 <= DDInput.DIR_8.GetInput()) // 上移動
 					{
 						ya = -1.0;
 					}
-					if (1 <= DDInput.DIR_2.GetInput()) // 下移動
+					if (!bornOrDead && 1 <= DDInput.DIR_2.GetInput()) // 下移動
 					{
 						ya = 1.0;
 					}
 					double speed = 6.0;
 
-					if (1 <= DDInput.A.GetInput()) // 低速ボタン押下中
+					if (!bornOrDead && 1 <= DDInput.A.GetInput()) // 低速ボタン押下中
 					{
 						speed = 3.0;
 					}
@@ -79,43 +81,38 @@ namespace Charlotte.Games
 					DDUtils.Range(ref this.Player.X, 0.0, DDConsts.Screen_W);
 					DDUtils.Range(ref this.Player.Y, 0.0, DDConsts.Screen_H);
 
-					if (1 <= DDInput.B.GetInput()) // 攻撃ボタン押下中
+					if (!bornOrDead && 1 <= DDInput.B.GetInput()) // 攻撃ボタン押下中
 					{
 						this.Player.Fire();
 					}
-
-					// test
-					{
-						if (DDInput.R.IsPound())
-						{
-							enemyAddRate += 0.01;
-						}
-						if (DDInput.L.IsPound())
-						{
-							enemyAddRate -= 0.01;
-						}
-						DDUtils.Range(ref enemyAddRate, 0.0, 1.0);
-					}
 				}
 
-#if true
-				this.Scenario.EachFrame();
-#else // test
-				// 敵の出現(仮)
 				{
-					for (int c = 0; c < 10; c++)
+					DDScene scene = GameUtils.SceneIncrement(ref this.Player.BornFrame, 40);
+
+					if (scene != null)
 					{
-						if (DDUtils.Random.Real2() < enemyAddRate)
+						// noop
+					}
+				}
+
+				{
+					DDScene scene = GameUtils.SceneIncrement(ref this.Player.DeadFrame, 40);
+
+					if (scene != null)
+					{
+						if (scene.Remaining == 0)
 						{
-							this.AddEnemy(IEnemies.Load(
-								new Enemy0001(),
-								DDConsts.Screen_W + 50.0,
-								DDConsts.Screen_H * DDUtils.Random.Real()
-								));
+							if (this.Status.RemainingLiveCount <= 0)
+								break;
+
+							this.Status.RemainingLiveCount--;
+							this.Player.BornFrame = 1;
 						}
 					}
 				}
-#endif
+
+				this.Scenario.EachFrame();
 
 				this.EnemyEachFrame();
 				this.WeaponEachFrame();
@@ -144,9 +141,13 @@ namespace Charlotte.Games
 						}
 						this.Weapons.RemoveAll(weapon => weapon.Dead);
 
-						if (enemyCrash.IsCrashed(playerCrash))
+						if (
+							this.Player.BornFrame == 0 &&
+							this.Player.DeadFrame == 0 &&
+							enemyCrash.IsCrashed(playerCrash)
+							)
 						{
-							// TODO
+							this.Player.DeadFrame = 1;
 						}
 					}
 					this.Enemies.RemoveAll(enemy => enemy.Dead);
@@ -160,7 +161,7 @@ namespace Charlotte.Games
 				this.DrawWeapons();
 
 				DDPrint.SetPrint();
-				DDPrint.Print(DDEngine.FrameProcessingMillis_Worst + " " + this.Enemies.Count + " " + enemyAddRate.ToString("F2"));
+				DDPrint.Print(DDEngine.FrameProcessingMillis_Worst + " " + this.Enemies.Count);
 
 				DDEngine.EachFrame();
 			}

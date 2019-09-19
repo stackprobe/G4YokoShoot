@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using Charlotte.Games.Walls;
 using Charlotte.Tools;
+using Charlotte.Games.Enemies;
+using Charlotte.Common;
 
 namespace Charlotte.Games.Scenarios
 {
@@ -15,10 +17,14 @@ namespace Charlotte.Games.Scenarios
 			{
 				Game.I.SetWall(new Wall0003());
 
+				Game.I.AddEnemy(IEnemies.Load(new Enemy0001(), DDConsts.Screen_W + 50.0, DDConsts.Screen_H / 2.0));
+
 				for (int c = 0; c < 500; c++)
 					yield return true;
 
 				Game.I.SetWall(new Wall0004());
+
+				Game.I.AddEnemy(IEnemies.Load(new Enemy0001(), DDConsts.Screen_W + 50.0, DDConsts.Screen_H / 2.0));
 
 				for (int c = 0; c < 500; c++)
 					yield return true;

@@ -34,6 +34,7 @@ namespace Charlotte.Worlds
 				using (Game game = new Game())
 				{
 					game.Scenario = scenario;
+					game.Status = new Status();
 					game.Perform();
 				}
 			}

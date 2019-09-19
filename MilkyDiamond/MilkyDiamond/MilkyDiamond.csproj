@@ -126,6 +126,7 @@
     <Compile Include="Game3Common\CrashUtils.cs" />
     <Compile Include="Games\Enemies\Enemy0001.cs" />
     <Compile Include="Games\Game.cs" />
+    <Compile Include="Games\GameUtils.cs" />
     <Compile Include="Games\IEnemies.cs" />
     <Compile Include="Games\IEnemy.cs" />
     <Compile Include="Games\IScenario.cs" />

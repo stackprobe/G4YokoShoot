@@ -14,6 +14,7 @@ namespace Charlotte.Tests.Games
 			using (Game game = new Game())
 			{
 				game.Scenario = new Scenario0001();
+				game.Status = new Status();
 				game.Perform();
 			}
 		}
@@ -23,6 +24,7 @@ namespace Charlotte.Tests.Games
 			using (Game game = new Game())
 			{
 				game.Scenario = new Scenario0002();
+				game.Status = new Status();
 				game.Perform();
 			}
 		}
