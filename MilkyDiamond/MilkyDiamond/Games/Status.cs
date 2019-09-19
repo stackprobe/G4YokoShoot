@@ -7,6 +7,6 @@ namespace Charlotte.Games
 {
 	public class Status
 	{
-		public int RemainingLiveCount = 1;
+		public int RemainingLiveCount = 3;
 	}
 }

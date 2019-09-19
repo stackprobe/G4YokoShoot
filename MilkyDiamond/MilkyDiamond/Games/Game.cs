@@ -41,7 +41,7 @@ namespace Charlotte.Games
 			this.Player.X = DDConsts.Screen_W / 4;
 			this.Player.Y = DDConsts.Screen_H / 2;
 
-			this.Player.BornFrame = 1;
+			this.Player.BornScene.Fire();
 
 			DDCurtain.SetCurtain(10);
 
@@ -49,29 +49,30 @@ namespace Charlotte.Games
 			{
 				// プレイヤー行動
 				{
-					bool bornOrDead = 1 <= this.Player.BornFrame || 1 <= this.Player.DeadFrame;
+					bool bornOrDead = this.Player.BornScene.IsFlaming() || this.Player.DeadScene.IsFlaming();
+					bool dead = this.Player.DeadScene.IsFlaming();
 					double xa = 0.0;
 					double ya = 0.0;
 
-					if (!bornOrDead && 1 <= DDInput.DIR_4.GetInput()) // 左移動
+					if (!dead && 1 <= DDInput.DIR_4.GetInput()) // 左移動
 					{
 						xa = -1.0;
 					}
-					if (!bornOrDead && 1 <= DDInput.DIR_6.GetInput()) // 右移動
+					if (!dead && 1 <= DDInput.DIR_6.GetInput()) // 右移動
 					{
 						xa = 1.0;
 					}
-					if (!bornOrDead && 1 <= DDInput.DIR_8.GetInput()) // 上移動
+					if (!dead && 1 <= DDInput.DIR_8.GetInput()) // 上移動
 					{
 						ya = -1.0;
 					}
-					if (!bornOrDead && 1 <= DDInput.DIR_2.GetInput()) // 下移動
+					if (!dead && 1 <= DDInput.DIR_2.GetInput()) // 下移動
 					{
 						ya = 1.0;
 					}
 					double speed = 6.0;
 
-					if (!bornOrDead && 1 <= DDInput.A.GetInput()) // 低速ボタン押下中
+					if (!dead && 1 <= DDInput.A.GetInput()) // 低速ボタン押下中
 					{
 						speed = 3.0;
 					}
@@ -88,7 +89,7 @@ namespace Charlotte.Games
 				}
 
 				{
-					DDScene scene = GameUtils.SceneIncrement(ref this.Player.BornFrame, 40);
+					DDScene scene = this.Player.MutekiScene.GetScene();
 
 					if (scene != null)
 					{
@@ -97,7 +98,19 @@ namespace Charlotte.Games
 				}
 
 				{
-					DDScene scene = GameUtils.SceneIncrement(ref this.Player.DeadFrame, 40);
+					DDScene scene = this.Player.BornScene.GetScene();
+
+					if (scene != null)
+					{
+						if (scene.Remaining == 0)
+						{
+							this.Player.MutekiScene.Fire();
+						}
+					}
+				}
+
+				{
+					DDScene scene = this.Player.DeadScene.GetScene();
 
 					if (scene != null)
 					{
@@ -107,7 +120,7 @@ namespace Charlotte.Games
 								break;
 
 							this.Status.RemainingLiveCount--;
-							this.Player.BornFrame = 1;
+							this.Player.BornScene.Fire();
 						}
 					}
 				}
@@ -141,13 +154,11 @@ namespace Charlotte.Games
 						}
 						this.Weapons.RemoveAll(weapon => weapon.Dead);
 
-						if (
-							this.Player.BornFrame == 0 &&
-							this.Player.DeadFrame == 0 &&
-							enemyCrash.IsCrashed(playerCrash)
-							)
+						if (this.Player.BornScene.IsFlaming() == false &&
+							this.Player.DeadScene.IsFlaming() == false &&
+							this.Player.MutekiScene.IsFlaming() == false && enemyCrash.IsCrashed(playerCrash))
 						{
-							this.Player.DeadFrame = 1;
+							this.Player.DeadScene.Fire();
 						}
 					}
 					this.Enemies.RemoveAll(enemy => enemy.Dead);
