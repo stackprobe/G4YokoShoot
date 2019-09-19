@@ -51,7 +51,7 @@ namespace Charlotte.Games
 					{
 						xa = -1.0;
 					}
-					if (1 <= DDInput.DIR_6.GetInput()) // 左移動
+					if (1 <= DDInput.DIR_6.GetInput()) // 右移動
 					{
 						xa = 1.0;
 					}
