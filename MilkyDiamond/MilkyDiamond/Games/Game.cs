@@ -95,7 +95,7 @@ namespace Charlotte.Games
 						if (DDUtils.Random.Real2() < enemyAddRate)
 						{
 							IEnemy enemy = new Enemy0001();
-							enemy.Loaded(new D2Point(DDConsts.Screen_W + 50.0, DDUtils.Random.Next() % DDConsts.Screen_H));
+							enemy.Loaded(new D2Point(DDConsts.Screen_W + 50.0, DDUtils.Random.Real() * DDConsts.Screen_H));
 							this.AddEnemy(enemy);
 						}
 					}
