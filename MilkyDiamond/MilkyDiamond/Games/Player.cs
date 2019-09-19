@@ -22,9 +22,11 @@ namespace Charlotte.Games
 		{
 			if (Game.I.Frame % 6 == 0)
 			{
-				IWeapon weapon = new Weapon0001();
-				weapon.Loaded(new D2Point(this.X + 20.0, this.Y));
-				Game.I.AddWeapon(weapon);
+				Game.I.AddWeapon(IWeapons.Load(
+					new Weapon0001(),
+					this.X + 38.0,
+					this.Y
+					));
 			}
 		}
 	}
