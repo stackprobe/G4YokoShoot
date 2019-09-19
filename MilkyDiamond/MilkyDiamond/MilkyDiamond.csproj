@@ -126,8 +126,12 @@
     <Compile Include="Game3Common\CrashUtils.cs" />
     <Compile Include="Game3Common\SceneKeeper.cs" />
     <Compile Include="Games\EffectUtils.cs" />
+    <Compile Include="Games\Enemies\Bosses\Boss0001.cs" />
+    <Compile Include="Games\Enemies\Bosses\Boss0002.cs" />
+    <Compile Include="Games\Enemies\Bosses\Boss0003.cs" />
     <Compile Include="Games\Enemies\Enemy0001.cs" />
     <Compile Include="Games\Enemies\Enemy0002.cs" />
+    <Compile Include="Games\Enemies\Shots\Tama0001.cs" />
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\IEnemies.cs" />
     <Compile Include="Games\IEnemy.cs" />

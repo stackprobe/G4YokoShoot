@@ -13,6 +13,7 @@ namespace Charlotte.Games
 		bool EachFrame(); // ? 生存
 		Crash GetCrash();
 		bool Crashed(IWeapon weapon); // ? 生存
+		IEnemies.Kind_e GetKind();
 		void Draw();
 	}
 }

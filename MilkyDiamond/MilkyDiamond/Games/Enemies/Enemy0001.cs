@@ -23,7 +23,7 @@ namespace Charlotte.Games.Enemies
 		{
 			this.X -= 3.0;
 
-			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 100.0) == false;
+			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 48.0) == false;
 		}
 
 		public Game3Common.Crash GetCrash()
@@ -36,6 +36,11 @@ namespace Charlotte.Games.Enemies
 			EffectUtils.中爆発(this.X, this.Y);
 
 			return false;
+		}
+
+		public IEnemies.Kind_e GetKind()
+		{
+			return IEnemies.Kind_e.ENEMY;
 		}
 
 		public void Draw()

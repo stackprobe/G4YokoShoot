@@ -18,5 +18,11 @@ namespace Charlotte.Games
 			enemy.Loaded(pt);
 			return enemy;
 		}
+
+		public enum Kind_e
+		{
+			ENEMY,
+			SHOT,
+		}
 	}
 }

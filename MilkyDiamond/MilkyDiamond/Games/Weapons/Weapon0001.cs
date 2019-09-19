@@ -23,7 +23,7 @@ namespace Charlotte.Games.Weapons
 		{
 			this.X += 10.0;
 
-			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 50.0) == false;
+			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 16.0) == false;
 		}
 
 		public Game3Common.Crash GetCrash()
@@ -33,9 +33,13 @@ namespace Charlotte.Games.Weapons
 
 		public bool Crashed(IEnemy enemy)
 		{
-			EffectUtils.小爆発(this.X, this.Y);
+			if (enemy.GetKind() == IEnemies.Kind_e.ENEMY)
+			{
+				EffectUtils.小爆発(this.X, this.Y);
 
-			return false;
+				return false;
+			}
+			return true;
 		}
 
 		public int GetAttackPoint()

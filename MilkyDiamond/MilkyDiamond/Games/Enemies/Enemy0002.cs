@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game3Common;
+using Charlotte.Games.Enemies.Shots;
 
 namespace Charlotte.Games.Enemies
 {
@@ -12,6 +13,7 @@ namespace Charlotte.Games.Enemies
 	{
 		public double X;
 		public double Y;
+		public int Frame = 0;
 
 		public void Loaded(Tools.D2Point pt)
 		{
@@ -21,6 +23,11 @@ namespace Charlotte.Games.Enemies
 
 		public bool EachFrame()
 		{
+			this.Frame++;
+
+			if (this.Frame % 20 == 0)
+				Game.I.AddEnemy(IEnemies.Load(new Tama0001(), this.X, this.Y));
+
 			D2Point mvPt = DDUtils.AngleToPoint(
 				DDUtils.GetAngle(Game.I.Player.X - this.X, Game.I.Player.Y - this.Y),
 				2.5
@@ -29,7 +36,7 @@ namespace Charlotte.Games.Enemies
 			this.X += mvPt.X;
 			this.Y += mvPt.Y;
 
-			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 100.0) == false;
+			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 64.0) == false;
 		}
 
 		public Game3Common.Crash GetCrash()
@@ -50,6 +57,11 @@ namespace Charlotte.Games.Enemies
 				return false;
 			}
 			return true;
+		}
+
+		public IEnemies.Kind_e GetKind()
+		{
+			return IEnemies.Kind_e.ENEMY;
 		}
 
 		public void Draw()
