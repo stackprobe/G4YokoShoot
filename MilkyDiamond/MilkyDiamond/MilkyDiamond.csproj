@@ -124,6 +124,7 @@
     <Compile Include="Common\DDWin32.cs" />
     <Compile Include="Game3Common\Crash.cs" />
     <Compile Include="Game3Common\CrashUtils.cs" />
+    <Compile Include="Games\Enemies\Enemy0001.cs" />
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\IEnemy.cs" />
     <Compile Include="Games\IWeapon.cs" />
@@ -170,9 +171,7 @@
   <ItemGroup>
     <Content Include="game_app.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Games\Enemies\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>

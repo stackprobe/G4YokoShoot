@@ -23,12 +23,12 @@ namespace Charlotte.Games.Weapons
 		{
 			this.X += 10.0;
 
-			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 30.0) == false;
+			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 50.0) == false;
 		}
 
 		public Game3Common.Crash GetCrash()
 		{
-			return CrashUtils.Circle(new D2Point(this.X, this.Y), 10.0);
+			return CrashUtils.Circle(new D2Point(this.X, this.Y), 16.0);
 		}
 
 		public bool Crashed(IEnemy enemy)

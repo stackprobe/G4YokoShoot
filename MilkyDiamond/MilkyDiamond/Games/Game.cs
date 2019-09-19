@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Common;
 using Charlotte.Game3Common;
 using Charlotte.Tools;
+using Charlotte.Games.Enemies;
 
 namespace Charlotte.Games
 {
@@ -30,6 +31,8 @@ namespace Charlotte.Games
 		{
 			this.Player.X = DDConsts.Screen_W / 4;
 			this.Player.Y = DDConsts.Screen_H / 2;
+
+			double enemyAddRate = 0.01;
 
 			for (; ; this.Frame++)
 			{
@@ -70,9 +73,35 @@ namespace Charlotte.Games
 					{
 						this.Player.Fire();
 					}
+
+					// test
+					{
+						if (DDInput.R.IsPound())
+						{
+							enemyAddRate += 0.01;
+						}
+						if (DDInput.L.IsPound())
+						{
+							enemyAddRate -= 0.01;
+						}
+						DDUtils.Range(ref enemyAddRate, 0.0, 1.0);
+					}
 				}
 
-				//this.EnemyEachFrame(); // TODO
+				// 敵の出現(仮)
+				{
+					for (int c = 0; c < 10; c++)
+					{
+						if (DDUtils.Random.Real2() < enemyAddRate)
+						{
+							IEnemy enemy = new Enemy0001();
+							enemy.Loaded(new D2Point(DDConsts.Screen_W + 50.0, DDUtils.Random.Next() % DDConsts.Screen_H));
+							this.AddEnemy(enemy);
+						}
+					}
+				}
+
+				this.EnemyEachFrame();
 				this.WeaponEachFrame();
 
 				// Crash
@@ -82,7 +111,6 @@ namespace Charlotte.Games
 					foreach (WeaponBox weapon in this.Weapons.Iterate())
 						weapon.Crash = weapon.Value.GetCrash();
 
-#if false // TODO
 					foreach (EnemyBox enemy in this.Enemies.Iterate())
 					{
 						Crash enemyCrash = enemy.Value.GetCrash();
@@ -100,26 +128,23 @@ namespace Charlotte.Games
 						}
 						this.Weapons.RemoveAll(weapon => weapon.Dead);
 
-						if (this.Player.DeadFrame == 0 &&
-							this.Player.DamageFrame == 0 &&
-							this.Player.MutekiFrame == 0 && enemyCrash.IsCrashed(playerCrash))
+						if (enemyCrash.IsCrashed(playerCrash))
 						{
-							if (enemy.Value.CrashedToPlayer() == false) // ? 消滅
-								enemy.Dead = true;
-
-							this.Player.Crashed(enemy.Value);
+							// TODO
 						}
 					}
 					this.Enemies.RemoveAll(enemy => enemy.Dead);
-#endif
 				}
 
 				// ここから描画
 
 				this.DrawWall();
 				this.Player.Draw();
-				//this.DrawEnemies(); // TODO
+				this.DrawEnemies();
 				this.DrawWeapons();
+
+				DDPrint.SetPrint();
+				DDPrint.Print(DDEngine.FrameProcessingMillis_Worst + " " + this.Enemies.Count + " " + enemyAddRate.ToString("F2"));
 
 				DDEngine.EachFrame();
 			}
@@ -128,6 +153,42 @@ namespace Charlotte.Games
 		private void DrawWall()
 		{
 			DDCurtain.DrawCurtain();
+		}
+
+		private class EnemyBox
+		{
+			public IEnemy Value;
+			public bool Dead;
+		}
+
+		private DDList<EnemyBox> Enemies = new DDList<EnemyBox>();
+
+		public void AddEnemy(IEnemy enemy)
+		{
+			this.Enemies.Add(new EnemyBox()
+			{
+				Value = enemy,
+			});
+		}
+
+		private void EnemyEachFrame()
+		{
+			foreach (EnemyBox enemy in this.Enemies.Iterate())
+			{
+				if (enemy.Value.EachFrame() == false) // ? 消滅
+				{
+					enemy.Dead = true;
+				}
+			}
+			this.Enemies.RemoveAll(enemy => enemy.Dead);
+		}
+
+		private void DrawEnemies()
+		{
+			foreach (EnemyBox enemy in this.Enemies.Iterate())
+			{
+				enemy.Value.Draw();
+			}
 		}
 
 		private class WeaponBox
