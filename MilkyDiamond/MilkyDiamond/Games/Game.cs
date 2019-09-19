@@ -36,6 +36,8 @@ namespace Charlotte.Games
 			this.Player.X = DDConsts.Screen_W / 4;
 			this.Player.Y = DDConsts.Screen_H / 2;
 
+			DDCurtain.SetCurtain(10);
+
 			double enemyAddRate = 0.01;
 
 			for (; ; this.Frame++)
