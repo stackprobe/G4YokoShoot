@@ -5,6 +5,7 @@ using System.Text;
 using Charlotte.Tools;
 using Charlotte.Games.Enemies;
 using Charlotte.Common;
+using Charlotte.Games.Walls;
 
 namespace Charlotte.Games.Scenarios
 {
@@ -14,6 +15,8 @@ namespace Charlotte.Games.Scenarios
 		{
 			for (; ; )
 			{
+				Game.I.SetWall(new Wall0001());
+
 				foreach (DDScene scene in DDSceneUtils.Create(10))
 				{
 					Game.I.AddEnemy(IEnemies.Load(
@@ -38,6 +41,38 @@ namespace Charlotte.Games.Scenarios
 						));
 
 					for (int c = 0; c < 20; c++)
+						yield return true;
+				}
+
+				for (int c = 0; c < 60; c++)
+					yield return true;
+
+				Game.I.SetWall(new Wall0002());
+
+				foreach (DDScene scene in DDSceneUtils.Create(20))
+				{
+					Game.I.AddEnemy(IEnemies.Load(
+						new Enemy0001(),
+						DDConsts.Screen_W + 50.0,
+						DDConsts.Screen_H * DDUtils.Random.Real()
+						));
+
+					for (int c = 0; c < 10; c++)
+						yield return true;
+				}
+
+				for (int c = 0; c < 60; c++)
+					yield return true;
+
+				foreach (DDScene scene in DDSceneUtils.Create(20))
+				{
+					Game.I.AddEnemy(IEnemies.Load(
+						new Enemy0001(),
+						DDConsts.Screen_W + 50.0,
+						DDConsts.Screen_H * DDUtils.Random.Real()
+						));
+
+					for (int c = 0; c < 10; c++)
 						yield return true;
 				}
 

@@ -6,6 +6,7 @@ using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game3Common;
 using Charlotte.Games.Enemies;
+using Charlotte.Games.Walls;
 
 namespace Charlotte.Games
 {
@@ -24,6 +25,9 @@ namespace Charlotte.Games
 
 		public void Dispose()
 		{
+			this.WallScreen.Dispose();
+			this.WallScreen = null;
+
 			I = null;
 		}
 
@@ -162,9 +166,50 @@ namespace Charlotte.Games
 			}
 		}
 
+		private IWall LastWall = null;
+		private IWall Wall = new WallDark();
+		private int WallChangeNumer = -1;
+		private int WallChangeDenom = -1;
+		private DDSubScreen WallScreen = new DDSubScreen(DDConsts.Screen_W, DDConsts.Screen_H);
+
+		public void SetWall(IWall wall, int denom = 180)
+		{
+			this.LastWall = this.Wall;
+			this.Wall = wall;
+			this.WallChangeNumer = 0;
+			this.WallChangeDenom = denom;
+		}
+
 		private void DrawWall()
 		{
-			DDCurtain.DrawCurtain();
+			if (this.LastWall == null)
+			{
+				this.Wall.Draw();
+			}
+			else
+			{
+				double a = this.WallChangeNumer * 1.0 / this.WallChangeDenom;
+
+				this.LastWall.Draw();
+
+				using (this.WallScreen.Section())
+				{
+					this.Wall.Draw();
+				}
+
+				DDDraw.SetAlpha(a);
+				DDDraw.DrawSimple(this.WallScreen.ToPicture(), 0, 0);
+				DDDraw.Reset();
+
+				this.WallChangeNumer++;
+
+				if (this.WallChangeDenom <= this.WallChangeNumer)
+				{
+					this.LastWall = null;
+					this.WallChangeNumer = -1;
+					this.WallChangeDenom = -1;
+				}
+			}
 		}
 
 		private class EnemyBox
