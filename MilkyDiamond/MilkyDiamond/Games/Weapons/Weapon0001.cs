@@ -33,7 +33,7 @@ namespace Charlotte.Games.Weapons
 
 		public bool Crashed(IEnemy enemy)
 		{
-			if (enemy.GetKind() == IEnemies.Kind_e.ENEMY)
+			if (enemy.GetKind() != IEnemies.Kind_e.SHOT)
 			{
 				EffectUtils.小爆発(this.X, this.Y);
 

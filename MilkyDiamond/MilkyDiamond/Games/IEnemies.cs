@@ -21,8 +21,9 @@ namespace Charlotte.Games
 
 		public enum Kind_e
 		{
-			ENEMY,
+			ENEMY = 1,
 			SHOT,
+			OBSTACLE,
 		}
 	}
 }
