@@ -124,11 +124,11 @@
     <Compile Include="Common\DDWin32.cs" />
     <Compile Include="Game3Common\Crash.cs" />
     <Compile Include="Game3Common\CrashUtils.cs" />
-    <Compile Include="Games\Crash.cs" />
     <Compile Include="Games\Game.cs" />
     <Compile Include="Games\IEnemy.cs" />
     <Compile Include="Games\IWeapon.cs" />
     <Compile Include="Games\Player.cs" />
+    <Compile Include="Games\Weapons\Weapon0001.cs" />
     <Compile Include="Ground.cs" />
     <Compile Include="MainWin.cs">
       <SubType>Form</SubType>
@@ -142,6 +142,7 @@
     <Compile Include="ResourceMusic.cs" />
     <Compile Include="ResourcePicture.cs" />
     <Compile Include="ResourceSE.cs" />
+    <Compile Include="Tests\Games\GameTest.cs" />
     <Compile Include="Tests\Test0001.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
@@ -169,7 +170,9 @@
   <ItemGroup>
     <Content Include="game_app.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Games\Enemies\" />
+  </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
