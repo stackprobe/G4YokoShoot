@@ -134,8 +134,12 @@
     <Compile Include="Games\IWeapons.cs" />
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Scenarios\Scenario0001.cs" />
+    <Compile Include="Games\Scenarios\Scenario0002.cs" />
+    <Compile Include="Games\Status.cs" />
     <Compile Include="Games\Walls\Wall0001.cs" />
     <Compile Include="Games\Walls\Wall0002.cs" />
+    <Compile Include="Games\Walls\Wall0003.cs" />
+    <Compile Include="Games\Walls\Wall0004.cs" />
     <Compile Include="Games\Walls\WallDark.cs" />
     <Compile Include="Games\Weapons\Weapon0001.cs" />
     <Compile Include="Ground.cs" />

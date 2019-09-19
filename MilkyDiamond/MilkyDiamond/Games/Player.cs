@@ -13,6 +13,9 @@ namespace Charlotte.Games
 		public double X;
 		public double Y;
 
+		public int BornFrame;
+		public int DeadFrame;
+
 		public void Draw()
 		{
 			DDDraw.DrawCenter(Ground.I.Picture.Player, this.X, this.Y);

@@ -17,5 +17,14 @@ namespace Charlotte.Tests.Games
 				game.Perform();
 			}
 		}
+
+		public void Test02()
+		{
+			using (Game game = new Game())
+			{
+				game.Scenario = new Scenario0002();
+				game.Perform();
+			}
+		}
 	}
 }
