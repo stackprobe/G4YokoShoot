@@ -6,6 +6,7 @@ using Charlotte.Games.Walls;
 using Charlotte.Games.Enemies;
 using Charlotte.Common;
 using Charlotte.Tools;
+using Charlotte.Games.Enemies.Bosses;
 
 namespace Charlotte.Games.Scenarios
 {
@@ -28,6 +29,11 @@ namespace Charlotte.Games.Scenarios
 
 				for (int c = 0; c < 500; c++)
 					yield return true;
+
+				Game.I.AddEnemy(IEnemies.Load(new Boss0001(), -1.0, 0.0));
+
+				for (; ; )
+					yield return true; // fixme
 			}
 		}
 

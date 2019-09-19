@@ -48,5 +48,25 @@ namespace Charlotte.Games
 				yield return true;
 			}
 		}
+
+		public static void 大爆発(double x, double y)
+		{
+			DDGround.EL.Add(EnumerableTools.Supplier(大爆発Seq(x, y)));
+		}
+
+		private static IEnumerable<bool> 大爆発Seq(double x, double y)
+		{
+			foreach (DDScene scene in DDSceneUtils.Create(20))
+			{
+				DDDraw.SetAlpha(0.7);
+				DDDraw.SetBright(0.6, 0.8, 1.0);
+				DDDraw.DrawBegin(DDGround.GeneralResource.WhiteCircle, x - DDGround.ICamera.X, y - DDGround.ICamera.Y);
+				DDDraw.DrawZoom(3.0 * scene.Rate);
+				DDDraw.DrawEnd();
+				DDDraw.Reset();
+
+				yield return true;
+			}
+		}
 	}
 }
