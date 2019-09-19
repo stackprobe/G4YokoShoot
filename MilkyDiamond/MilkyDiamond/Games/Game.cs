@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Charlotte.Tools;
 using Charlotte.Common;
 using Charlotte.Game3Common;
-using Charlotte.Tools;
 using Charlotte.Games.Enemies;
 
 namespace Charlotte.Games
 {
 	public class Game : IDisposable
 	{
+		public IScenario Scenario;
+
+		// <---- prm
+
 		public static Game I = null;
 
 		public Game()
@@ -88,6 +92,9 @@ namespace Charlotte.Games
 					}
 				}
 
+#if true
+				this.Scenario.EachFrame();
+#else // test
 				// 敵の出現(仮)
 				{
 					for (int c = 0; c < 10; c++)
@@ -102,6 +109,7 @@ namespace Charlotte.Games
 						}
 					}
 				}
+#endif
 
 				this.EnemyEachFrame();
 				this.WeaponEachFrame();

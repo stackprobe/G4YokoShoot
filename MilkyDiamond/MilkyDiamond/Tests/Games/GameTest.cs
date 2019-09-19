@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Charlotte.Games;
+using Charlotte.Games.Scenarios;
 
 namespace Charlotte.Tests.Games
 {
@@ -12,6 +13,7 @@ namespace Charlotte.Tests.Games
 		{
 			using (Game game = new Game())
 			{
+				game.Scenario = new Scenario0001();
 				game.Perform();
 			}
 		}
