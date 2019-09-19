@@ -91,7 +91,7 @@ namespace Charlotte.Games
 				{
 					DDScene scene = this.Player.BornScene.GetScene();
 
-					if (scene != null)
+					if (scene.Numer != -1)
 					{
 						if (scene.Remaining == 0)
 						{
@@ -103,7 +103,7 @@ namespace Charlotte.Games
 				{
 					DDScene scene = this.Player.DeadScene.GetScene();
 
-					if (scene != null)
+					if (scene.Numer != -1)
 					{
 						if (scene.Remaining == 0)
 						{
@@ -119,7 +119,7 @@ namespace Charlotte.Games
 				{
 					DDScene scene = this.Player.MutekiScene.GetScene();
 
-					if (scene != null)
+					if (scene.Numer != -1)
 					{
 						// noop
 					}

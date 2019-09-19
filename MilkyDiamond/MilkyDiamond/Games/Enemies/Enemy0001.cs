@@ -33,7 +33,9 @@ namespace Charlotte.Games.Enemies
 
 		public bool Crashed(IWeapon weapon)
 		{
-			return false; // k
+			EffectUtils.中爆発(this.X, this.Y);
+
+			return false;
 		}
 
 		public void Draw()

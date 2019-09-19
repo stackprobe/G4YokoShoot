@@ -33,7 +33,9 @@ namespace Charlotte.Games.Weapons
 
 		public bool Crashed(IEnemy enemy)
 		{
-			return false; // TODO
+			EffectUtils.小爆発(this.X, this.Y);
+
+			return false;
 		}
 
 		public void Draw()

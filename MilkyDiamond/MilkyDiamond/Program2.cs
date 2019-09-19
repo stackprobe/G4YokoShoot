@@ -70,7 +70,8 @@ namespace Charlotte
 		{
 			//new Test0001().Test01();
 			//new GameTest().Test01();
-			new GameTest().Test02();
+			//new GameTest().Test02();
+			new GameTest().Test03();
 			//new TitleMenu().Perform();
 		}
 	}
