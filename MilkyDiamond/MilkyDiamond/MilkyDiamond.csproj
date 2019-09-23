@@ -90,10 +90,9 @@
     <Compile Include="Common\DDGeneralResource.cs" />
     <Compile Include="Common\DDGround.cs" />
     <Compile Include="Common\DDInput.cs" />
-    <Compile Include="Common\DDList.cs" />
-    <Compile Include="Common\DDRandom.cs" />
     <Compile Include="Common\DDJammer.cs" />
     <Compile Include="Common\DDKey.cs" />
+    <Compile Include="Common\DDList.cs" />
     <Compile Include="Common\DDMain.cs" />
     <Compile Include="Common\DDMain2.cs" />
     <Compile Include="Common\DDMouse.cs" />
@@ -106,6 +105,7 @@
     <Compile Include="Common\DDPictureLoaderUtils.cs" />
     <Compile Include="Common\DDPictureUtils.cs" />
     <Compile Include="Common\DDPrint.cs" />
+    <Compile Include="Common\DDRandom.cs" />
     <Compile Include="Common\DDResource.cs" />
     <Compile Include="Common\DDSaveData.cs" />
     <Compile Include="Common\DDScene.cs" />
@@ -125,6 +125,7 @@
     <Compile Include="Game3Common\Crash.cs" />
     <Compile Include="Game3Common\CrashUtils.cs" />
     <Compile Include="Game3Common\SceneKeeper.cs" />
+    <Compile Include="Game3Common\SlideUtils.cs" />
     <Compile Include="Games\EffectUtils.cs" />
     <Compile Include="Games\Enemies\Bosses\Boss0001.cs" />
     <Compile Include="Games\Enemies\Bosses\Boss0002.cs" />
