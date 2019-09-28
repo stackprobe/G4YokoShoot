@@ -143,6 +143,7 @@
     <Compile Include="Games\IWall.cs" />
     <Compile Include="Games\IWeapon.cs" />
     <Compile Include="Games\IWeapons.cs" />
+    <Compile Include="Games\MultiScenario.cs" />
     <Compile Include="Games\Player.cs" />
     <Compile Include="Games\Scenarios\Scenario0001.cs" />
     <Compile Include="Games\Scenarios\Scenario0002.cs" />

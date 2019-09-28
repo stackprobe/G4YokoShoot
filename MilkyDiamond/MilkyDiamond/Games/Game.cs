@@ -54,44 +54,35 @@ namespace Charlotte.Games
 					bool dead = this.Player.DeadScene.IsFlaming();
 					double xa = 0.0;
 					double ya = 0.0;
-					bool move = false;
 
 					if (!dead && 1 <= DDInput.DIR_4.GetInput()) // 左移動
 					{
 						xa = -1.0;
-						move = true;
 					}
 					if (!dead && 1 <= DDInput.DIR_6.GetInput()) // 右移動
 					{
 						xa = 1.0;
-						move = true;
 					}
 					if (!dead && 1 <= DDInput.DIR_8.GetInput()) // 上移動
 					{
 						ya = -1.0;
-						move = true;
 					}
 					if (!dead && 1 <= DDInput.DIR_2.GetInput()) // 下移動
 					{
 						ya = 1.0;
-						move = true;
 					}
 
-					if (move)
-						this.Player.MoveFrame++;
-					else
-						this.Player.MoveFrame--;
-
-					DDUtils.Range(ref this.Player.MoveFrame, 0, 10); // fixme これでいいのか？
-
-					double speed = 6.0;
+					double speed;
 
 					if (1 <= DDInput.A.GetInput()) // 低速ボタン押下中
 					{
-						//speed = Math.Min(this.Player.MoveFrame, 3.0);
-						speed = 3.0;
-						//speed = 2.0; // 遅すぎる気がする。
+						speed = (double)this.Player.SpeedLevel;
 					}
+					else
+					{
+						speed = (double)(this.Player.SpeedLevel * 2);
+					}
+
 					this.Player.X += xa * speed;
 					this.Player.Y += ya * speed;
 
@@ -102,6 +93,16 @@ namespace Charlotte.Games
 					{
 						this.Player.Shoot();
 					}
+
+					if (DDInput.L.GetInput() == 1)
+					{
+						this.Player.SpeedLevel--;
+					}
+					if (DDInput.R.GetInput() == 1)
+					{
+						this.Player.SpeedLevel++;
+					}
+					DDUtils.Range(ref this.Player.SpeedLevel, Player.SPEED_LEVEL_MIN, Player.SPEED_LEVEL_MAX);
 				}
 
 				{
@@ -141,7 +142,8 @@ namespace Charlotte.Games
 					}
 				}
 
-				this.Scenario.EachFrame();
+				if (this.Scenario.EachFrame() == false)
+					break;
 
 				this.EnemyEachFrame();
 				this.WeaponEachFrame();
@@ -226,7 +228,7 @@ namespace Charlotte.Games
 				}
 
 				DDPrint.SetPrint();
-				DDPrint.Print(DDEngine.FrameProcessingMillis_Worst + " " + this.Enemies.Count);
+				DDPrint.Print(DDEngine.FrameProcessingMillis_Worst + " " + this.Enemies.Count + " SPEED=" + this.Player.SpeedLevel);
 
 				DDEngine.EachFrame();
 			}

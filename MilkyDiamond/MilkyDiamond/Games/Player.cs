@@ -11,10 +11,13 @@ namespace Charlotte.Games
 {
 	public class Player
 	{
+		public const int SPEED_LEVEL_MIN = 1;
+		public const int SPEED_LEVEL_DEF = 3;
+		public const int SPEED_LEVEL_MAX = 5;
+
 		public double X;
 		public double Y;
-
-		public int MoveFrame;
+		public int SpeedLevel = SPEED_LEVEL_DEF;
 
 		public SceneKeeper BornScene = new SceneKeeper(20);
 		public SceneKeeper DeadScene = new SceneKeeper(20);
