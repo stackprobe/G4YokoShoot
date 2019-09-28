@@ -7,6 +7,7 @@ using Charlotte.Common;
 using Charlotte.Game3Common;
 using Charlotte.Games.Enemies;
 using Charlotte.Games.Walls;
+using DxLibDLL;
 
 namespace Charlotte.Games
 {
@@ -53,28 +54,43 @@ namespace Charlotte.Games
 					bool dead = this.Player.DeadScene.IsFlaming();
 					double xa = 0.0;
 					double ya = 0.0;
+					bool move = false;
 
 					if (!dead && 1 <= DDInput.DIR_4.GetInput()) // 左移動
 					{
 						xa = -1.0;
+						move = true;
 					}
 					if (!dead && 1 <= DDInput.DIR_6.GetInput()) // 右移動
 					{
 						xa = 1.0;
+						move = true;
 					}
 					if (!dead && 1 <= DDInput.DIR_8.GetInput()) // 上移動
 					{
 						ya = -1.0;
+						move = true;
 					}
 					if (!dead && 1 <= DDInput.DIR_2.GetInput()) // 下移動
 					{
 						ya = 1.0;
+						move = true;
 					}
+
+					if (move)
+						this.Player.MoveFrame++;
+					else
+						this.Player.MoveFrame--;
+
+					DDUtils.Range(ref this.Player.MoveFrame, 0, 10); // fixme これでいいのか？
+
 					double speed = 6.0;
 
-					if (!dead && 1 <= DDInput.A.GetInput()) // 低速ボタン押下中
+					if (1 <= DDInput.A.GetInput()) // 低速ボタン押下中
 					{
+						//speed = Math.Min(this.Player.MoveFrame, 3.0);
 						speed = 3.0;
+						//speed = 2.0; // 遅すぎる気がする。
 					}
 					this.Player.X += xa * speed;
 					this.Player.Y += ya * speed;
@@ -130,6 +146,8 @@ namespace Charlotte.Games
 				this.EnemyEachFrame();
 				this.WeaponEachFrame();
 
+				CrashView cv = DDKey.GetInput(DX.KEY_INPUT_LSHIFT) == 0 ? null : new CrashView();
+
 				// Crash
 				{
 					Crash playerCrash = CrashUtils.Point(new D2Point(this.Player.X, this.Player.Y));
@@ -140,6 +158,9 @@ namespace Charlotte.Games
 					foreach (EnemyBox enemy in this.Enemies.Iterate())
 					{
 						Crash enemyCrash = enemy.Value.GetCrash();
+
+						if (cv != null)
+							cv.Draw(enemyCrash);
 
 						foreach (WeaponBox weapon in this.Weapons.Iterate())
 						{
@@ -158,7 +179,7 @@ namespace Charlotte.Games
 							this.Player.DeadScene.IsFlaming() == false &&
 							this.Player.MutekiScene.IsFlaming() == false && enemyCrash.IsCrashed(playerCrash))
 						{
-							foreach (DDScene scene in DDSceneUtils.Create(30))
+							foreach (DDScene scene in DDSceneUtils.Create(30)) // プレイヤ死亡効果
 							{
 								this.DrawWall();
 								this.Player.Draw();
@@ -196,6 +217,13 @@ namespace Charlotte.Games
 				this.Player.Draw();
 				this.DrawEnemies();
 				this.DrawWeapons();
+
+				if (cv != null)
+				{
+					cv.DrawToScreen(0.8);
+					cv.Dispose();
+					cv = null;
+				}
 
 				DDPrint.SetPrint();
 				DDPrint.Print(DDEngine.FrameProcessingMillis_Worst + " " + this.Enemies.Count);
