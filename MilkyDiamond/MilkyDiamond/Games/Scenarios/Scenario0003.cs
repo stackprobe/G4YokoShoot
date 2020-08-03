@@ -33,7 +33,7 @@ namespace Charlotte.Games.Scenarios
 				Game.I.AddEnemy(IEnemies.Load(new Boss0001(), -1.0, 0.0));
 
 				for (; ; )
-					yield return true; // fixme
+					yield return true; // todo
 			}
 		}
 
