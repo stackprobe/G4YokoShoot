@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Game3Common;
+using Charlotte.Common.Options;
 
 namespace Charlotte.Games.Enemies.Shots
 {
@@ -37,7 +37,7 @@ namespace Charlotte.Games.Enemies.Shots
 			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 16.0) == false;
 		}
 
-		public Game3Common.Crash GetCrash()
+		public Crash GetCrash()
 		{
 			return CrashUtils.Circle(new D2Point(this.X, this.Y), 16.0);
 		}

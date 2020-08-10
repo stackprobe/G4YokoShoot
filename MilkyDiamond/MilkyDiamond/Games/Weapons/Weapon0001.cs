@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Game3Common;
 using Charlotte.Tools;
 using Charlotte.Common;
+using Charlotte.Common.Options;
 
 namespace Charlotte.Games.Weapons
 {
@@ -26,7 +26,7 @@ namespace Charlotte.Games.Weapons
 			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 16.0) == false;
 		}
 
-		public Game3Common.Crash GetCrash()
+		public Crash GetCrash()
 		{
 			return CrashUtils.Circle(new D2Point(this.X, this.Y), 16.0);
 		}

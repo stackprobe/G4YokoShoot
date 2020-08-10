@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using Charlotte.Tools;
 using Charlotte.Common;
-using Charlotte.Game3Common;
+using Charlotte.Common.Options;
 using Charlotte.Games.Enemies;
 using Charlotte.Games.Walls;
 using DxLibDLL;

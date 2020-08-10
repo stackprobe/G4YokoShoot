@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Charlotte.Common;
-using Charlotte.Game3Common;
 using Charlotte.Tools;
+using Charlotte.Common;
+using Charlotte.Common.Options;
 
 namespace Charlotte.Games.Enemies.Bosses
 {
@@ -69,7 +69,7 @@ namespace Charlotte.Games.Enemies.Bosses
 			return true;
 		}
 
-		public Game3Common.Crash GetCrash()
+		public Crash GetCrash()
 		{
 			const double WH = 192.0;
 			const double CORNER_R = 30.0;
