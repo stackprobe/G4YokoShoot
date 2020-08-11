@@ -148,18 +148,18 @@ namespace Charlotte.Games
 				this.EnemyEachFrame();
 				this.WeaponEachFrame();
 
-				CrashView cv = DDKey.GetInput(DX.KEY_INPUT_LSHIFT) == 0 ? null : new CrashView();
+				DDCrashView cv = DDKey.GetInput(DX.KEY_INPUT_LSHIFT) == 0 ? null : new DDCrashView();
 
 				// Crash
 				{
-					Crash playerCrash = CrashUtils.Point(new D2Point(this.Player.X, this.Player.Y));
+					DDCrash playerCrash = DDCrashUtils.Point(new D2Point(this.Player.X, this.Player.Y));
 
 					foreach (WeaponBox weapon in this.Weapons.Iterate())
 						weapon.Crash = weapon.Value.GetCrash();
 
 					foreach (EnemyBox enemy in this.Enemies.Iterate())
 					{
-						Crash enemyCrash = enemy.Value.GetCrash();
+						DDCrash enemyCrash = enemy.Value.GetCrash();
 
 						if (cv != null)
 							cv.Draw(enemyCrash);
@@ -319,7 +319,7 @@ namespace Charlotte.Games
 		private class WeaponBox
 		{
 			public IWeapon Value;
-			public Crash Crash;
+			public DDCrash Crash;
 			public bool Dead;
 		}
 

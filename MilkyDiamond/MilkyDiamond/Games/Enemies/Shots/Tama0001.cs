@@ -37,9 +37,9 @@ namespace Charlotte.Games.Enemies.Shots
 			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 16.0) == false;
 		}
 
-		public Crash GetCrash()
+		public DDCrash GetCrash()
 		{
-			return CrashUtils.Circle(new D2Point(this.X, this.Y), 16.0);
+			return DDCrashUtils.Circle(new D2Point(this.X, this.Y), 16.0);
 		}
 
 		public bool Crashed(IWeapon weapon)

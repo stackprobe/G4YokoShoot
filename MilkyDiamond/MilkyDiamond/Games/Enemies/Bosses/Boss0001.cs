@@ -69,28 +69,28 @@ namespace Charlotte.Games.Enemies.Bosses
 			return true;
 		}
 
-		public Crash GetCrash()
+		public DDCrash GetCrash()
 		{
 			const double WH = 192.0;
 			const double CORNER_R = 30.0;
 
-			return CrashUtils.Multi(
-				CrashUtils.Rect(new D4Rect(
+			return DDCrashUtils.Multi(
+				DDCrashUtils.Rect(new D4Rect(
 					this.X - WH / 2.0 + CORNER_R,
 					this.Y - WH / 2.0,
 					WH - CORNER_R * 2.0,
 					WH
 					)),
-				CrashUtils.Rect(new D4Rect(
+				DDCrashUtils.Rect(new D4Rect(
 					this.X - WH / 2.0,
 					this.Y - WH / 2.0 + CORNER_R,
 					WH,
 					WH - CORNER_R * 2.0
 					)),
-				CrashUtils.Circle(new D2Point(this.X - (WH / 2.0 - CORNER_R), this.Y - (WH / 2.0 - CORNER_R)), CORNER_R),
-				CrashUtils.Circle(new D2Point(this.X + (WH / 2.0 - CORNER_R), this.Y - (WH / 2.0 - CORNER_R)), CORNER_R),
-				CrashUtils.Circle(new D2Point(this.X + (WH / 2.0 - CORNER_R), this.Y + (WH / 2.0 - CORNER_R)), CORNER_R),
-				CrashUtils.Circle(new D2Point(this.X - (WH / 2.0 - CORNER_R), this.Y + (WH / 2.0 - CORNER_R)), CORNER_R)
+				DDCrashUtils.Circle(new D2Point(this.X - (WH / 2.0 - CORNER_R), this.Y - (WH / 2.0 - CORNER_R)), CORNER_R),
+				DDCrashUtils.Circle(new D2Point(this.X + (WH / 2.0 - CORNER_R), this.Y - (WH / 2.0 - CORNER_R)), CORNER_R),
+				DDCrashUtils.Circle(new D2Point(this.X + (WH / 2.0 - CORNER_R), this.Y + (WH / 2.0 - CORNER_R)), CORNER_R),
+				DDCrashUtils.Circle(new D2Point(this.X - (WH / 2.0 - CORNER_R), this.Y + (WH / 2.0 - CORNER_R)), CORNER_R)
 				);
 		}
 

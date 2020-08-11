@@ -11,7 +11,7 @@ namespace Charlotte.Games
 	{
 		void Loaded(D2Point pt);
 		bool EachFrame(); // ? 生存
-		Crash GetCrash();
+		DDCrash GetCrash();
 		bool Crashed(IEnemy enemy); // ? 生存
 		int GetAttackPoint();
 		void Draw();

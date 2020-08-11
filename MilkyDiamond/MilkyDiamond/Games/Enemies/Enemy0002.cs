@@ -39,9 +39,9 @@ namespace Charlotte.Games.Enemies
 			return DDUtils.IsOutOfScreen(new D2Point(this.X, this.Y), 64.0) == false;
 		}
 
-		public Crash GetCrash()
+		public DDCrash GetCrash()
 		{
-			return CrashUtils.Circle(new D2Point(this.X, this.Y), 64.0);
+			return DDCrashUtils.Circle(new D2Point(this.X, this.Y), 64.0);
 		}
 
 		public int HP = 10;

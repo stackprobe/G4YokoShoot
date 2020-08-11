@@ -19,9 +19,9 @@ namespace Charlotte.Games
 		public double Y;
 		public int SpeedLevel = SPEED_LEVEL_DEF;
 
-		public SceneKeeper BornScene = new SceneKeeper(20);
-		public SceneKeeper DeadScene = new SceneKeeper(20);
-		public SceneKeeper MutekiScene = new SceneKeeper(60);
+		public DDSceneKeeper BornScene = new DDSceneKeeper(20);
+		public DDSceneKeeper DeadScene = new DDSceneKeeper(20);
+		public DDSceneKeeper MutekiScene = new DDSceneKeeper(60);
 
 		private double Born_X;
 		private double Born_Y;
