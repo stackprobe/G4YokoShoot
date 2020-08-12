@@ -1,6 +1,11 @@
 C:\Factory\Tools\RDMD.exe /RC out
 
-C:\Factory\SubTools\makeDDResourceFile.exe C:\Dat\Resource out\Resource.dat C:\Factory\Program\MaskGZDataForDonut3\MaskGZData.exe
+C:\Factory\SubTools\makeDDResourceFile.exe ^
+	C:\Dat\Resource ^
+	/SD Fairy\Donut3\General ^
+	/SD Etoile\MilkyDiamond ^
+	out\Resource.dat ^
+	C:\Factory\Program\MaskGZDataForDonut3\MaskGZData.exe
 
 C:\Factory\SubTools\CallConfuserCLI.exe MilkyDiamond\MilkyDiamond\bin\Release\MilkyDiamond.exe out\MilkyDiamond.exe
 rem COPY /B MilkyDiamond\MilkyDiamond\bin\Release\MilkyDiamond.exe out
