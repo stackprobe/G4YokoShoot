@@ -86,8 +86,8 @@ namespace Charlotte.Games
 					this.Player.X += xa * speed;
 					this.Player.Y += ya * speed;
 
-					DDUtils.Range(ref this.Player.X, 0.0, DDConsts.Screen_W);
-					DDUtils.Range(ref this.Player.Y, 0.0, DDConsts.Screen_H);
+					DDUtils.ToRange(ref this.Player.X, 0.0, DDConsts.Screen_W);
+					DDUtils.ToRange(ref this.Player.Y, 0.0, DDConsts.Screen_H);
 
 					if (!bornOrDead && 1 <= DDInput.B.GetInput()) // 攻撃ボタン押下中
 					{
@@ -102,7 +102,7 @@ namespace Charlotte.Games
 					{
 						this.Player.SpeedLevel++;
 					}
-					DDUtils.Range(ref this.Player.SpeedLevel, Player.SPEED_LEVEL_MIN, Player.SPEED_LEVEL_MAX);
+					DDUtils.ToRange(ref this.Player.SpeedLevel, Player.SPEED_LEVEL_MIN, Player.SPEED_LEVEL_MAX);
 				}
 
 				{
