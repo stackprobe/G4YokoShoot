@@ -156,7 +156,7 @@
     <Compile Include="Games\Walls\WallDark.cs" />
     <Compile Include="Games\Weapons\Weapon0001.cs" />
     <Compile Include="Ground.cs" />
-    <Compile Include="Mains\TitleMenu.cs" />
+    <Compile Include="Games\TitleMenu.cs" />
     <Compile Include="MainWin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,7 +171,7 @@
     <Compile Include="ResourceSE.cs" />
     <Compile Include="Tests\Games\GameTest.cs" />
     <Compile Include="Tests\Test0001.cs" />
-    <Compile Include="Worlds\World.cs" />
+    <Compile Include="Games\World.cs" />
     <EmbeddedResource Include="MainWin.resx">
       <DependentUpon>MainWin.cs</DependentUpon>
     </EmbeddedResource>

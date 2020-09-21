@@ -5,7 +5,7 @@ using System.Text;
 using Charlotte.Games;
 using Charlotte.Games.Scenarios;
 
-namespace Charlotte.Worlds
+namespace Charlotte.Games
 {
 	public class World : IDisposable
 	{
